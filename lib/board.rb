@@ -15,7 +15,7 @@ class Board
 
   def []=(pos, piece)
     row, col = pos
-    rows[row][col] = "#{piece} "
+    rows[row][col] = piece
   end
 
   def pretty_print
