@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 require 'colorize'
+require_relative 'null_piece'
 
 class Board
   attr_reader :rows
 
   def initialize
-    @rows = Array.new(8) { Array.new(8, '  ') }
+    @rows = Array.new(8) { Array.new(8, NullPiece.instance) }
   end
 
   def [](pos)
@@ -22,15 +23,14 @@ class Board
     print_letter_indexes
     rows.each_with_index do |row, row_idx|
       print "#{row_idx} "
-      row.each_with_index do |space, col_idx|
+      row.each_with_index do |piece, col_idx|
         case row_idx.even?
         when true
-          color = col_idx.even? ? :white : :black
+          background_color = col_idx.even? ? :white : :black
         else
-          color = col_idx.even? ? :black : :white
+          background_color = col_idx.even? ? :black : :white
         end
-
-        print space.colorize(background: color)
+        print_piece(piece, background_color)
       end
       print " #{row_idx}"
       puts
@@ -42,6 +42,14 @@ class Board
     print '  '
     ('A'..'H').each { |char| print(char + ' ') }
     puts
+  end
+
+  def print_piece(piece, background_color)
+    if piece == NullPiece.instance
+      print piece.to_s.colorize(background: background_color)
+    else
+      print piece.to_s.colorize(color: piece.color, background: background_color)
+    end
   end
 
   def in_bounds?(pos)
