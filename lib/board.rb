@@ -43,4 +43,15 @@ class Board
     ('A'..'H').each { |char| print(char + ' ') }
     puts
   end
+
+  def in_bounds?(pos)
+    row, col = pos
+    if row > 7 || col > 7
+      false
+    elsif row.negative? || col.negative?
+      false
+    else
+      true
+    end
+  end
 end
