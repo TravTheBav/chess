@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-# a class representing a King
-# contains move offsets for all 8 directions a king can move
+# a class representing a king
+# can move in any direction but can only move one space
+require_relative 'piece'
 
 class King < Piece
+  def to_s
+    '♔ '
+  end
+
   def moves
     [
       [-1, -1],
