@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# a class representing a chess board
 require 'colorize'
 require_relative 'null_piece'
 
@@ -29,4 +31,5 @@ class Board
       true
     end
   end
+
 end
