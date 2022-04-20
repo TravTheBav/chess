@@ -1,4 +1,5 @@
-require_relative 'board'
+require_relative 'display'
 
 b = Board.new
-b.pretty_print
+d = Display.new(b)
+d.pretty_print

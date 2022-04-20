@@ -18,9 +18,9 @@ class Display
       row.each_with_index do |piece, col_idx|
         case row_idx.even?
         when true
-          background_color = col_idx.even? ? :white : :black
+          background_color = col_idx.even? ? :blue : :light_blue
         else
-          background_color = col_idx.even? ? :black : :white
+          background_color = col_idx.even? ? :light_blue : :blue
         end
         print_piece(piece, background_color)
       end

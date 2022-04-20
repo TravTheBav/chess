@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/knight'
+require_relative '../lib/pieces/knight'
 require_relative '../lib/board'
 
 describe Knight do

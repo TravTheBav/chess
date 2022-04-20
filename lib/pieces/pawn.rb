@@ -14,7 +14,7 @@ class Pawn < Piece
     '♙ '
   end
 
-  def initialize(color)
+  def initialize(board, color)
     @moved = false
     super
   end
