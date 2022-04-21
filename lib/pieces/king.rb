@@ -3,8 +3,11 @@
 # a class representing a king
 # can move in any direction but can only move one space
 require_relative 'piece'
+require_relative 'steppable'
 
 class King < Piece
+  include Steppable
+
   def to_s
     '♚ '
   end
