@@ -44,6 +44,14 @@ class Board
     arr
   end
 
+  def fetch_piece_position(piece)
+    rows.each_with_index do |row, x|
+      row.each_with_index do |space, y|
+        return [x, y] if self[[x, y]] == piece
+      end
+    end
+  end
+
   def in_bounds?(pos)
     row, col = pos
     if row > 7 || col > 7

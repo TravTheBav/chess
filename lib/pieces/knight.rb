@@ -8,7 +8,7 @@ class Knight < Piece
   def to_s
     '♞ '
   end
-  
+
   def move_offsets
     [
       [-2, -1],
@@ -22,9 +22,9 @@ class Knight < Piece
     ]
   end
 
-  def valid_moves(position)
+  def valid_moves
     moves = []
-    row, col = position
+    row, col = board.fetch_piece_position(self)
     move_offsets.each do |offset|
       x, y = offset
       new_position = [row + x, col + y]
