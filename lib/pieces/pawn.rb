@@ -11,7 +11,7 @@ class Pawn < Piece
   attr_reader :moved
 
   def to_s
-    '♙ '
+    '♟ '
   end
 
   def initialize(board, color)

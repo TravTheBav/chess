@@ -22,4 +22,14 @@ describe Board do
       end
     end
   end
+
+  describe '#move_piece' do
+    it 'moves a piece from the start position to the end position' do
+      start_pos = [1, 0]
+      end_pos = [3, 0]
+      chess_board.move_piece(start_pos, end_pos)
+      expect(chess_board[start_pos]).to be_a(NullPiece)
+      expect(chess_board[end_pos]).to be_a(Pawn)
+    end
+  end
 end

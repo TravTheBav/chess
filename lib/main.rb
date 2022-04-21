@@ -2,4 +2,5 @@ require_relative 'display'
 
 b = Board.new
 d = Display.new(b)
-d.pretty_print
+b.move_piece([1, 0], [2, 0])
+d.render

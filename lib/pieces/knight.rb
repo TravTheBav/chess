@@ -6,7 +6,7 @@ require_relative 'piece'
 
 class Knight < Piece
   def to_s
-    '♘ '
+    '♞ '
   end
   
   def move_offsets

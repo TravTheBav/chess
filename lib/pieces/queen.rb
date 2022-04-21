@@ -10,6 +10,6 @@ require_relative 'piece'
 
 class Queen < Piece
   def to_s
-    '♕ '
+    '♛ '
   end
 end

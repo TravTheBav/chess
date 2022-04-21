@@ -54,4 +54,8 @@ class Board
       true
     end
   end
+
+  def move_piece(start_pos, end_pos)
+    self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+  end
 end

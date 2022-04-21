@@ -11,7 +11,7 @@ class Display
     @board = board
   end
 
-  def pretty_print
+  def render
     print_letter_indexes
      board.rows.each_with_index do |row, row_idx|
       print "#{row_idx} "
