@@ -67,6 +67,10 @@ class Board
     end
   end
 
+  def dup
+    Marshal.load(Marshal.dump(self))
+  end
+
   def in_check?(color)
     king = rows.flatten.select { |piece| piece.is_a(King) && piece.color == color }
     king_pos = fetch_piece_position(king)

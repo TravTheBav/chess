@@ -48,4 +48,23 @@ describe Board do
       end
     end
   end
+
+  describe '#dup' do
+    it 'the board and the board copy have different object ids' do
+      copy = chess_board.dup
+      expect(copy).to be_different_object(chess_board)
+    end
+
+    it 'every piece on the copied board is a new object instance' do
+      copy = chess_board.dup
+      copy.rows.each_with_index do |row, x|
+        row.each_with_index do |copied_piece, y|
+          unless copied_piece == NullPiece.instance # null pieces will always have the same object id
+            original_piece = chess_board[[x, y]]
+            expect(copied_piece).to be_different_object(original_piece)
+          end
+        end
+      end
+    end
+  end
 end

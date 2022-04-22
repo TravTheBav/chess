@@ -95,4 +95,9 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  RSpec::Matchers.define :be_different_object do |object_1|
+    match do |object_2|
+      object_2.equal?(object_1) == false
+    end
+  end
 end

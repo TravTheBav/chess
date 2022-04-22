@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'deep_dup'
-
 class Piece
   attr_reader :board, :color
 
@@ -12,7 +10,7 @@ class Piece
 
   # a move that does not put it's own king in check
   def legal_move?(position)
-    board_clone = DeepDup.deep_dup(board)
+    board_clone = board.dup
     board_clone.move_piece(position)
     board_clone.in_check?(color)
   end
