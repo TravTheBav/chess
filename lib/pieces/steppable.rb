@@ -3,17 +3,21 @@
 # a module for pieces that travel directly to another space (knights and kings)
 
 module Steppable
-  def valid_moves
-    moves = []
+  # selects all moves that are in the piece's range
+  def moves
+    arr = []
     row, col = board.fetch_piece_position(self)
     move_offsets.each do |offset|
       x, y = offset
-      new_position = [row + x, col + y]
-      if space_in_range?(new_position) && legal_move?(new_position) # and doesn't put it's king in check TODO
-        moves << new_position
-      end
+      move = [row + x, col + y]
+      arr << move if space_in_range?(move)
     end
-    moves
+    arr
+  end
+
+  # only selects moves that do not put king in check
+  def valid_moves
+    moves.select { |move| legal_move?(move) }
   end
 
   def space_in_range?(position)
