@@ -44,14 +44,6 @@ class Board
     arr
   end
 
-  def fetch_piece_position(piece)
-    rows.each_with_index do |row, x|
-      row.each_with_index do |space, y|
-        return [x, y] if self[[x, y]] == piece
-      end
-    end
-  end
-
   def in_bounds?(pos)
     row, col = pos
     if row > 7 || col > 7
@@ -65,5 +57,24 @@ class Board
 
   def move_piece(start_pos, end_pos)
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+  end
+
+  def fetch_piece_position(piece)
+    rows.each_with_index do |row, x|
+      row.each_with_index do |space, y|
+        return [x, y] if self[[x, y]] == piece
+      end
+    end
+  end
+
+  def in_check?(color)
+    king = rows.flatten.select { |piece| piece.is_a(King) && piece.color == color }
+    king_pos = fetch_piece_position(king)
+    rows.each do |row|
+      row.each do |piece|
+        return true if piece.valid_moves.include?(king_pos)
+      end
+    end
+    false
   end
 end

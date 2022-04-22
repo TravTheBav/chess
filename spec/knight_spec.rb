@@ -11,9 +11,7 @@ describe Knight do
 
   describe '#valid_moves' do
     context 'when knight is in the middle of an empty board' do
-      before do
-        board.instance_variable_set(:@rows, empty_board)
-      end
+      before { board.instance_variable_set(:@rows, empty_board) }
 
       it 'returns all 8 positions' do
         pos = [4, 4]
@@ -34,9 +32,7 @@ describe Knight do
     end
 
     context 'when knight is in the top left corner of an empty board' do
-      before do
-        board.instance_variable_set(:@rows, empty_board)
-      end
+      before { board.instance_variable_set(:@rows, empty_board) }
 
       it 'returns 2 positions' do
         pos = [0, 0]
@@ -51,9 +47,7 @@ describe Knight do
     end
 
     context 'when all possible moves are out of bounds or blocked by friendly pieces' do
-      before do
-        board.instance_variable_set(:@rows, empty_board)
-      end
+      before { board.instance_variable_set(:@rows, empty_board) }
 
       it 'returns an empty array' do
         pos = [0, 0]
@@ -67,9 +61,7 @@ describe Knight do
     end
 
     context 'when all possible moves are occupied by enemy pieces' do
-      before do
-        board.instance_variable_set(:@rows, empty_board)
-      end
+      before { board.instance_variable_set(:@rows, empty_board) }
 
       it 'returns those spaces as valid moves' do
         pos = [0, 0]

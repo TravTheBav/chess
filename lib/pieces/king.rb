@@ -12,7 +12,7 @@ class King < Piece
     '♚ '
   end
 
-  def moves
+  def move_offsets
     [
       [-1, -1],
       [-1, 0],

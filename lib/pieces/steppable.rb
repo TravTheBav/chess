@@ -9,12 +9,14 @@ module Steppable
     move_offsets.each do |offset|
       x, y = offset
       new_position = [row + x, col + y]
-      moves << new_position if valid_move_space?(new_position) # and doesn't put it's king in check TODO
+      if space_in_range?(new_position) && legal_move?(new_position) # and doesn't put it's king in check TODO
+        moves << new_position
+      end
     end
     moves
   end
 
-  def valid_move_space?(position)
+  def space_in_range?(position)
     board.in_bounds?(position) &&
       (board[position] == NullPiece.instance ||
       board[position].color != color)

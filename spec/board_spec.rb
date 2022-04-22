@@ -32,4 +32,20 @@ describe Board do
       expect(chess_board[end_pos]).to be_a(Pawn)
     end
   end
+
+  describe '#fetch_piece_position' do
+    context 'when no pieces have been moved yet' do
+      it 'returns the position of the leftmost black pawn' do
+        black_pawn = chess_board[[1, 0]]
+        result = chess_board.fetch_piece_position(black_pawn)
+        expect(result).to eq([1, 0])
+      end
+
+      it 'returns the position of the white king' do
+        white_king = chess_board[[7, 4]]
+        result = chess_board.fetch_piece_position(white_king)
+        expect(result).to eq([7, 4])
+      end
+    end
+  end
 end
