@@ -12,4 +12,13 @@ class Rook < Piece
   def to_s
     '♜ '
   end
+
+  def move_offsets
+    [
+      [-1, 0],
+      [1, 0],
+      [0, -1],
+      [0, 1]
+    ]
+  end
 end

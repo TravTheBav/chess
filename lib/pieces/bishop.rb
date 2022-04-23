@@ -12,4 +12,13 @@ class Bishop < Piece
   def to_s
     '♝ '
   end
+
+  def move_offsets
+    [
+      [-1, -1],
+      [-1, 1],
+      [1, -1],
+      [1, 1]
+    ]
+  end
 end
