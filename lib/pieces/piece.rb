@@ -8,6 +8,11 @@ class Piece
     @color = color
   end
 
+  # only selects moves that do not put king in check
+  def valid_moves
+    moves.select { |move| legal_move?(move) }
+  end
+
   # a move that does not put it's own king in check
   def legal_move?(position)
     board_clone = board.dup

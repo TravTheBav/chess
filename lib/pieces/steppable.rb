@@ -15,11 +15,6 @@ module Steppable
     arr
   end
 
-  # only selects moves that do not put king in check
-  def valid_moves
-    moves.select { |move| legal_move?(move) }
-  end
-
   def space_in_range?(position)
     board.in_bounds?(position) &&
       (board[position] == NullPiece.instance ||
