@@ -55,6 +55,14 @@ class Board
     end
   end
 
+  def empty_space?(position)
+    in_bounds?(position) && self[position] == NullPiece.instance
+  end
+
+  def space_contains_opposing_piece?(position, color)
+    self[position].color != color
+  end
+
   def move_piece(start_pos, end_pos)
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end

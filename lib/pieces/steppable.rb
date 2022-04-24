@@ -17,7 +17,7 @@ module Steppable
 
   def space_in_range?(position)
     board.in_bounds?(position) &&
-      (board[position] == NullPiece.instance ||
-      board[position].color != color)
+      (board.empty_space?(position) ||
+      board.space_contains_opposing_piece?(position, color))
   end
 end

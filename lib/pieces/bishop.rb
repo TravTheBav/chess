@@ -7,8 +7,11 @@
 # can move to any space diagonally between itself and
 # a friendly piece (excluding the friendly piece's space)
 require_relative 'piece'
+require_relative 'slideable'
 
 class Bishop < Piece
+  include Slideable
+
   def to_s
     '♝ '
   end

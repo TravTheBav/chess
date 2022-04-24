@@ -7,8 +7,11 @@
 # can move to any space vertically/horizontally/diagonally between itself and
 # a friendly piece (excluding the friendly piece's space)
 require_relative 'piece'
+require_relative 'slideable'
 
 class Queen < Piece
+  include Slideable
+
   def to_s
     '♛ '
   end
