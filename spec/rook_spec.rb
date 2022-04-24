@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 require_relative '../lib/pieces/rook'
-require_relative '../lib/pieces/null_piece'
 require_relative '../lib/board'
 
 describe Rook do
-  let(:empty_rows) { Array.new(8) { Array.new(8, NullPiece.instance) } }
   let(:board) { Board.new }
   subject(:white_rook) { described_class.new(board, :white) }
 
@@ -21,6 +19,6 @@ describe Rook do
       board[[7, 0]] = white_rook
       board.move_piece([7, 0], [5, 0])
       expect(white_rook.moves.count).to eq(11)
-    end    
+    end
   end
 end

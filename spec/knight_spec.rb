@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 require_relative '../lib/pieces/knight'
-require_relative '../lib/pieces/null_piece'
 require_relative '../lib/board'
 
 describe Knight do
-  let(:empty_board) { Array.new(8) { Array.new(8, NullPiece.instance) } }
   let(:board) { Board.new }
   subject(:white_knight) { described_class.new(board, :white) }
 
