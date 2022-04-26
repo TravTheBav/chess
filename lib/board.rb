@@ -64,6 +64,10 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
+    if self[start_pos].is_a?(Pawn) && self[start_pos].moved == false
+      self[start_pos].moved = true
+    end
+
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
 

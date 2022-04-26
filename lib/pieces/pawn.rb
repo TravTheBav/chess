@@ -8,7 +8,7 @@
 require_relative 'piece'
 
 class Pawn < Piece
-  attr_reader :moved
+  attr_accessor :moved
 
   def to_s
     '♟ '
@@ -49,13 +49,24 @@ class Pawn < Piece
       board.space_contains_opposing_piece?(position, color)
   end
 
-  # def moves
-  #   arr = []
-  #   offsets = []
-  #   row, col = board.fetch_piece_position(self)
-  #   if direction == :up
+  def moves
+    check_diagonals + check_forward_moves
+  end
 
-
-
-  # end
+  def check_forward_moves
+    arr = []
+    row, col = board.fetch_piece_position(self)
+    if moved && direction == :up
+      arr << [row - 1, col] if board.empty_space?([row - 1, col])
+    elsif moved && direction == :down
+      arr << [row + 1, col] if board.empty_space?([row + 1, col])
+    elsif moved == false && direction == :up
+      arr << [row - 1, col] if board.empty_space?([row - 1, col])
+      arr << [row - 2, col] if board.empty_space?([row - 2, col])
+    else
+      arr << [row + 1, col] if board.empty_space?([row + 1, col])
+      arr << [row + 2, col] if board.empty_space?([row + 2, col])
+    end
+    arr
+  end
 end
