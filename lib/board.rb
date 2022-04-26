@@ -2,6 +2,7 @@
 
 # a class representing a chess board
 require 'colorize'
+require 'pry-byebug'
 pieces = %w[bishop king knight null_piece pawn piece queen rook]
 pieces.each { |fn| require_relative "pieces/#{fn}" }
 
@@ -74,7 +75,7 @@ class Board
   def fetch_piece_position(piece)
     rows.each_with_index do |row, x|
       row.each_with_index do |space, y|
-        return [x, y] if self[[x, y]] == piece
+        return [x, y] if self[[x, y]].equal?(piece)
       end
     end
   end
@@ -84,11 +85,14 @@ class Board
   end
 
   def in_check?(color)
-    king = rows.flatten.select { |piece| piece.is_a(King) && piece.color == color }
+    king = rows.flatten.select { |piece| piece.is_a?(King) && piece.color == color }
+    king = king.pop
     king_pos = fetch_piece_position(king)
-    rows.each do |row|
-      row.each do |piece|
-        return true if piece.valid_moves.include?(king_pos)
+    rows.each_with_index do |row, x|
+      row.each_with_index do |piece, y|
+        next if empty_space?([x, y])
+
+        return true if piece.moves.include?(king_pos)
       end
     end
     false

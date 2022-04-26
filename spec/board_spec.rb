@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require_relative '../lib/board'
+require_relative '../lib/pieces/null_piece'
 
 describe Board do
   subject(:chess_board) { described_class.new }
+  let(:empty_rows) { Array.new(8) { Array.new(8, NullPiece.instance) } }
 
   describe '#in_bounds?' do
     context 'when given an out of bounds position' do
@@ -64,6 +66,47 @@ describe Board do
             expect(copied_piece).to be_different_object(original_piece)
           end
         end
+      end
+    end
+  end
+
+  describe '#in_check?' do
+    context 'at the beginning of the game for black' do
+      it 'returns false' do
+        expect(chess_board.in_check?(:black)).to be false
+      end
+    end
+
+    context 'at the beginning of the game for white' do
+      it 'returns false' do
+        expect(chess_board.in_check?(:white)).to be false
+      end
+    end
+
+    context 'when the king can be attacked by pawns' do
+      it 'returns true' do
+        chess_board.move_piece([0, 4], [5, 4])
+        expect(chess_board.in_check?(:black)).to be true
+      end
+    end
+
+    context 'when the king can be attacked by a rook' do
+      it 'returns true' do
+        chess_board.move_piece([0, 4], [2, 0])
+        chess_board.move_piece([6, 0], [5, 1])
+        expect(chess_board.in_check?(:black)).to be true
+      end
+    end
+
+    context 'testing out empty board' do
+      before do
+        chess_board.instance_variable_set(:@rows, empty_rows)
+      end
+
+      it 'works' do
+        chess_board[[0, 0]] = King.new(chess_board, :black)
+        chess_board[[2, 0]] = Rook.new(chess_board, :white)
+        expect(chess_board.in_check?(:black)).to be true
       end
     end
   end
