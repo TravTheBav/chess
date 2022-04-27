@@ -8,6 +8,10 @@ class Piece
     @color = color
   end
 
+  def inspect
+    to_s
+  end
+
   # only selects moves that do not put king in check
   def valid_moves
     moves.select { |move| legal_move?(move) }
@@ -18,6 +22,6 @@ class Piece
     position = board.fetch_piece_position(self)
     board_clone = board.dup
     board_clone.move_piece(position, move)
-    board_clone.in_check?(color)
+    board_clone.in_check?(color) == false
   end
 end

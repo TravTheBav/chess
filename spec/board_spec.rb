@@ -97,16 +97,21 @@ describe Board do
         expect(chess_board.in_check?(:black)).to be true
       end
     end
+  end
 
-    context 'testing out empty board' do
-      before do
-        chess_board.instance_variable_set(:@rows, empty_rows)
+  describe '#checkmate?' do
+    context 'when a king is in check but can get out of check' do
+      it 'returns false' do
+        chess_board.move_piece([0, 4], [5, 4])
+        expect(chess_board.checkmate?(:black)).to be false
       end
+    end
 
-      it 'works' do
-        chess_board[[0, 0]] = King.new(chess_board, :black)
-        chess_board[[2, 0]] = Rook.new(chess_board, :white)
-        expect(chess_board.in_check?(:black)).to be true
+    context 'when a king is in check and cannot get out of check' do
+      it 'returns true' do
+        chess_board.move_piece([0, 4], [5, 4])
+        chess_board.move_piece([7, 3], [3, 4])
+        expect(chess_board.checkmate?(:black)).to be true
       end
     end
   end

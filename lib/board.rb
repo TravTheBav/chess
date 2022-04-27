@@ -7,7 +7,7 @@ pieces = %w[bishop king knight null_piece pawn piece queen rook]
 pieces.each { |fn| require_relative "pieces/#{fn}" }
 
 class Board
-  attr_reader :rows
+  attr_accessor :rows
 
   def initialize
     @rows = starting_setup
@@ -96,5 +96,10 @@ class Board
       end
     end
     false
+  end
+
+  def checkmate?(color)
+    friendly_pieces = rows.flatten.select { |piece| piece.color == color }
+    friendly_pieces.all? { |piece| piece.valid_moves.empty? }
   end
 end
