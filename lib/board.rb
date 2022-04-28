@@ -2,15 +2,24 @@
 
 # a class representing a chess board
 require 'colorize'
-require 'pry-byebug'
 pieces = %w[bishop king knight null_piece pawn piece queen rook]
 pieces.each { |fn| require_relative "pieces/#{fn}" }
 
 class Board
-  attr_accessor :rows
+  attr_reader :rows, :alpha_map
 
   def initialize
     @rows = starting_setup
+    @alpha_map = {
+      'a' => 0,
+      'b' => 1,
+      'c' => 2,
+      'd' => 3,
+      'e' => 4,
+      'f' => 5,
+      'g' => 6,
+      'h' => 7
+    }
   end
 
   def [](pos)
@@ -101,5 +110,12 @@ class Board
   def checkmate?(color)
     friendly_pieces = rows.flatten.select { |piece| piece.color == color }
     friendly_pieces.all? { |piece| piece.valid_moves.empty? }
+  end
+
+  def convert_alpha_coordinate(coord)
+    chars = coord.split('')
+    col = alpha_map[chars[0]]
+    row = 8 - chars[1].to_i
+    [row, col]
   end
 end

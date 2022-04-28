@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# parent class for all pieces (except for NullPiece)
+
 class Piece
   attr_reader :board, :color
 

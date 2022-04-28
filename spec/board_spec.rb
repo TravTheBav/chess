@@ -115,4 +115,27 @@ describe Board do
       end
     end
   end
+
+  describe '#convert_alpha_coordinate' do
+    context 'when given a1' do
+      it 'returns [7, 0]' do
+        result = chess_board.convert_alpha_coordinate('a1')
+        expect(result).to eq([7, 0])
+      end
+    end
+
+    context 'when given c7' do
+      it 'returns [1, 2]' do
+        result = chess_board.convert_alpha_coordinate('c7')
+        expect(result).to eq([1, 2])
+      end
+    end
+
+    context 'when given e2' do
+      it 'returns [6, 4]' do
+        result = chess_board.convert_alpha_coordinate('e2')
+        expect(result).to eq([6, 4])
+      end
+    end
+  end
 end

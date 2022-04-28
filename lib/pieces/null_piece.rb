@@ -10,6 +10,10 @@ class NullPiece
     '  '
   end
 
+  def inspect
+    to_s
+  end
+
   def color
     nil
   end
