@@ -15,7 +15,7 @@ class Display
   def render
     print_letter_indexes
      board.rows.each_with_index do |row, row_idx|
-      print "#{(row_idx - 8).abs} "
+      print "#{8 - row_idx} "
       row.each_with_index do |piece, col_idx|
         case row_idx.even?
         when true
@@ -26,7 +26,7 @@ class Display
         background_color = :green if highlighted_positions.include?([row_idx, col_idx])
         print_piece(piece, background_color)
       end
-      print " #{(row_idx - 8).abs}"
+      print " #{8 - row_idx}"
       puts
     end
     print_letter_indexes
