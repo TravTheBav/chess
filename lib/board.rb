@@ -78,7 +78,13 @@ class Board
       self[start_pos].moved = true
     end
 
-    self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+    if empty_space?(end_pos)
+      self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+    else
+      tmp = self[start_pos]
+      self[start_pos] = NullPiece.instance
+      self[end_pos] = tmp
+    end
   end
 
   def fetch_piece_position(piece)

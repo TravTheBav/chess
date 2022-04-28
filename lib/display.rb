@@ -5,7 +5,8 @@
 require_relative 'board'
 
 class Display
-  attr_reader :board, :highlighted_positions
+  attr_reader :board
+  attr_accessor :highlighted_positions
 
   def initialize(board)
     @board = board
@@ -46,8 +47,7 @@ class Display
     end
   end
 
-  def reset
+  def clear_highlights
     @highlighted_positions = []
-    render
   end
 end
