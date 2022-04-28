@@ -5,16 +5,17 @@
 require_relative 'board'
 
 class Display
-  attr_reader :board
+  attr_reader :board, :highlighted_positions
 
   def initialize(board)
     @board = board
+    @highlighted_positions = []
   end
 
   def render
     print_letter_indexes
      board.rows.each_with_index do |row, row_idx|
-      print "#{row_idx} "
+      print "#{(row_idx - 8).abs} "
       row.each_with_index do |piece, col_idx|
         case row_idx.even?
         when true
@@ -22,9 +23,10 @@ class Display
         else
           background_color = col_idx.even? ? :light_blue : :blue
         end
+        background_color = :green if highlighted_positions.include?([row_idx, col_idx])
         print_piece(piece, background_color)
       end
-      print " #{row_idx}"
+      print " #{(row_idx - 8).abs}"
       puts
     end
     print_letter_indexes
@@ -42,5 +44,10 @@ class Display
     else
       print piece.to_s.colorize(color: piece.color, background: background_color)
     end
+  end
+
+  def reset
+    @highlighted_positions = []
+    render
   end
 end
