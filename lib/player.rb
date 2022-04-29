@@ -10,7 +10,9 @@ class Player
     @color = color
   end
 
-  def valid_move_input(input)
+  def valid_input(input)
+    return true if input == 'quit'
+
     chars = input.split('')
     chars.length == 2 &&
       ('a'..'h').include?(chars[0]) &&
@@ -20,18 +22,20 @@ class Player
   def pick_piece
     puts "[#{color}] - choose a piece to move:"
     input = gets.chomp
-    until valid_move_input(input)
+    until valid_input(input)
       input = gets.chomp
     end
+    exit if input == 'quit'
     input
   end
 
   def pick_move
     puts "[#{color}] - choose a move:"
     input = gets.chomp
-    until valid_move_input(input)
+    until valid_input(input)
       input = gets.chomp
     end
+    exit if input == 'quit'
     input
   end
 end
