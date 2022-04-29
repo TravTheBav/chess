@@ -70,6 +70,8 @@ class Game
 
   def play
     puts '*** Welcome to Ruby Chess ***'
+    puts 'type "quit" to exit the game at any time'
+    puts 'the game will autosave after each turn'
     loop do
       if board.in_check?(current_player.color)
         break if board.checkmate?(current_player.color)

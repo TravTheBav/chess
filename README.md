@@ -9,3 +9,7 @@ When prompted to pick a piece, you must enter a position that contains one of yo
 After selecting a piece, the game will prompt you to make a move. All valid moves
 will be highlighted green. You can deselect a piece by simply moving it to the space it currently
 occupies. Otherwise your selected piece will move to the given position.
+
+# Saving and quitting
+The game will save after every turn, so no need to worry about manual saving. If you want
+to quit the game just type 'quit' at any time.
