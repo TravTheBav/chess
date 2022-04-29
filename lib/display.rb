@@ -40,7 +40,7 @@ class Display
   end
 
   def print_piece(piece, background_color)
-    if piece == NullPiece.instance
+    if piece.is_a?(NullPiece)
       print piece.to_s.colorize(background: background_color)
     else
       print piece.to_s.colorize(color: piece.color, background: background_color)

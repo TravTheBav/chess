@@ -1,0 +1,190 @@
+---
+:board: &1 !ruby/object:Board
+  rows:
+  - - !ruby/object:Rook
+      board: *1
+      color: :black
+    - !ruby/object:Knight
+      board: *1
+      color: :black
+    - !ruby/object:Bishop
+      board: *1
+      color: :black
+    - !ruby/object:Queen
+      board: *1
+      color: :black
+    - !ruby/object:King
+      board: *1
+      color: :black
+    - !ruby/object:Bishop
+      board: *1
+      color: :black
+    - !ruby/object:Knight
+      board: *1
+      color: :black
+    - !ruby/object:Rook
+      board: *1
+      color: :black
+  - - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:NullPiece {}
+    - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:Pawn
+      moved: false
+      direction: :down
+      board: *1
+      color: :black
+  - - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+  - - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:Pawn
+      moved: true
+      direction: :down
+      board: *1
+      color: :black
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+  - - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:Pawn
+      moved: true
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:NullPiece {}
+  - - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:Knight
+      board: *1
+      color: :white
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+    - !ruby/object:NullPiece {}
+  - - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+    - !ruby/object:NullPiece {}
+    - !ruby/object:Pawn
+      moved: false
+      direction: :up
+      board: *1
+      color: :white
+  - - !ruby/object:Rook
+      board: *1
+      color: :white
+    - !ruby/object:NullPiece {}
+    - !ruby/object:Bishop
+      board: *1
+      color: :white
+    - !ruby/object:Queen
+      board: *1
+      color: :white
+    - !ruby/object:King
+      board: *1
+      color: :white
+    - !ruby/object:Bishop
+      board: *1
+      color: :white
+    - !ruby/object:Knight
+      board: *1
+      color: :white
+    - !ruby/object:Rook
+      board: *1
+      color: :white
+  alpha_map:
+    a: 0
+    b: 1
+    c: 2
+    d: 3
+    e: 4
+    f: 5
+    g: 6
+    h: 7
+:display: !ruby/object:Display
+  board: *1
+  highlighted_positions:
+  - - 6
+    - 6
+  - - 5
+    - 6
+  - - 4
+    - 6
+:player_white: &3 !ruby/object:Player
+  color: :white
+:player_black: &2 !ruby/object:Player
+  color: :black
+:players:
+- *2
+- *3
+:current_player: *2
+:selected_piece_position:

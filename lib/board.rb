@@ -47,7 +47,7 @@ class Board
       when 7
         8.times { |i| sub_arr << back_row[i].new(self, :white) }
       else
-        8.times { sub_arr << NullPiece.instance }
+        8.times { sub_arr << NullPiece.new }
       end
       arr << sub_arr
     end
@@ -66,7 +66,7 @@ class Board
   end
 
   def empty_space?(position)
-    in_bounds?(position) && self[position] == NullPiece.instance
+    in_bounds?(position) && self[position].is_a?(NullPiece)
   end
 
   def space_contains_opposing_piece?(position, color)
@@ -82,7 +82,7 @@ class Board
       self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
     else
       tmp = self[start_pos]
-      self[start_pos] = NullPiece.instance
+      self[start_pos] = NullPiece.new
       self[end_pos] = tmp
     end
   end

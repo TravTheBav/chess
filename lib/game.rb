@@ -5,10 +5,10 @@
 
 require_relative 'display'
 require_relative 'player'
-require 'pry-byebug'
+require 'yaml'
 
 class Game
-  attr_reader :board, :display, :player_white, :player_black, :players, :current_player, :selected_piece_position
+  attr_accessor :board, :display, :player_white, :player_black, :players, :current_player, :selected_piece_position
 
   def initialize
     @board = Board.new
@@ -18,6 +18,33 @@ class Game
     @players = [player_white, player_black]
     @current_player = players[0]
     @selected_piece_position = nil
+  end
+
+  def save
+    yaml_str = YAML.dump ({
+      board: @board,
+      display: @display,
+      player_white: @player_white,
+      player_black: @player_black,
+      players: @players,
+      current_player: @current_player,
+      selected_piece_position: nil
+    })
+    save_file = File.open(File.join(Dir.pwd, 'lib/save_file.yaml'), 'w')
+    save_file.puts yaml_str
+    save_file.close
+  end
+
+  def self.from_yaml
+    save_file = File.open(File.join(Dir.pwd, 'lib/save_file.yaml'), 'r')
+    contents = save_file.read
+    data = YAML.load contents
+    save_file.close
+    game = new
+    methods = %w[board= display= player_white= player_black= players= current_player= selected_piece_position=]
+    methods.each { |method_name| game.send(method_name, data[method_name[0...-1].to_sym]) }
+    game.display.send(:clear_highlights)
+    game
   end
 
   def game_over?
@@ -51,6 +78,7 @@ class Game
       end
 
       take_turn
+      save
     end
     end_game_message
   end
